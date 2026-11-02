@@ -223,3 +223,4 @@ $whiteBmp.Dispose()
 $srcBmp.Dispose()
 
 Write-Output "Successfully generated all logo variations and multi-size Windows icon.ico!"
+
