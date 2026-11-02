@@ -72,32 +72,32 @@ export default function Settings({ settings, onSettingsUpdated }) {
   return (
     <div className="space-y-6 max-w-4xl mx-auto py-4">
       <div>
-        <h2 className="text-2xl font-extrabold text-slate-100 flex items-center gap-2.5">
-          <Sliders className="w-6 h-6 text-blue-500" />
+        <h2 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 flex items-center gap-2.5 font-sans">
+          <Sliders className="w-6 h-6 text-zinc-800 dark:text-zinc-200" />
           <span>Application Settings</span>
         </h2>
-        <p className="text-xs text-slate-400 mt-0.5">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
           Configure download destinations, concurrency policies, and local cache.
         </p>
       </div>
 
       {saveMessage && (
-        <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center gap-2 animate-fadeIn">
+        <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold flex items-center gap-2 animate-fadeIn">
           <CheckCircle2 className="w-4 h-4" />
           <span>{saveMessage}</span>
         </div>
       )}
 
       {/* Download Location */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
+      <div className="bg-white dark:bg-[#121215] border border-[#E4DFD5] dark:border-[#222226] rounded-2xl p-5 shadow-sm dark:shadow-xl space-y-3 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Folder className="w-5 h-5 text-amber-400" />
-            <h3 className="text-sm font-bold text-slate-200">
+            <Folder className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
               Download Destination Folder
             </h3>
           </div>
-          <span className="text-xs text-slate-400">Default storage directory</span>
+          <span className="text-xs text-zinc-500">Default storage directory</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -105,12 +105,12 @@ export default function Settings({ settings, onSettingsUpdated }) {
             type="text"
             readOnly
             value={downloadDir}
-            className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-4 py-2.5 text-xs text-slate-300 font-mono select-all focus:outline-none"
+            className="w-full bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] rounded-xl px-4 py-2.5 text-xs text-zinc-800 dark:text-zinc-200 font-mono select-all focus:outline-none"
           />
           <button
             type="button"
             onClick={handleSelectFolder}
-            className="flex-shrink-0 px-4 py-2.5 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20 transition-all"
+            className="flex-shrink-0 px-4 py-2.5 rounded-xl text-xs font-bold bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white shadow-sm transition-all"
           >
             Browse...
           </button>
@@ -118,24 +118,24 @@ export default function Settings({ settings, onSettingsUpdated }) {
       </div>
 
       {/* Concurrency Settings */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
+      <div className="bg-white dark:bg-[#121215] border border-[#E4DFD5] dark:border-[#222226] rounded-2xl p-5 shadow-sm dark:shadow-xl space-y-3 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sliders className="w-5 h-5 text-blue-400" />
-            <h3 className="text-sm font-bold text-slate-200">
+            <Sliders className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
               Max Concurrent Downloads
             </h3>
           </div>
-          <span className="text-xs font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md">
+          <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded-md">
             {concurrency} concurrent
           </span>
         </div>
 
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
           Limits the number of simultaneous active downloads to preserve bandwidth and system responsiveness. Extra downloads are queued.
         </p>
 
-        <div className="flex items-center gap-4 pt-2">
+        <div className="flex flex-col gap-2 pt-2">
           <input
             type="range"
             min="1"
@@ -147,9 +147,9 @@ export default function Settings({ settings, onSettingsUpdated }) {
               setConcurrency(val);
               handleSave({ maxConcurrency: val });
             }}
-            className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-zinc-950 dark:accent-zinc-100"
           />
-          <div className="flex justify-between w-full text-[10px] text-slate-500 font-mono">
+          <div className="flex justify-between w-full text-[10px] text-zinc-500 font-mono">
             <span>1 (Conservative)</span>
             <span>3 (Balanced)</span>
             <span>5 (High Throughput)</span>
@@ -158,46 +158,46 @@ export default function Settings({ settings, onSettingsUpdated }) {
       </div>
 
       {/* Temporary Storage Cache */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+      <div className="bg-white dark:bg-[#121215] border border-[#E4DFD5] dark:border-[#222226] rounded-2xl p-5 shadow-sm dark:shadow-xl space-y-4 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <HardDrive className="w-5 h-5 text-purple-400" />
-            <h3 className="text-sm font-bold text-slate-200">
+            <HardDrive className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
               Temporary Stream Storage
             </h3>
           </div>
-          <span className="text-xs text-slate-400">Isolated OS cache</span>
+          <span className="text-xs text-zinc-500">Isolated OS cache</span>
         </div>
 
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
           Streams are downloaded into temporary scratch storage during download and merge operations. Files are automatically cleared after completion.
         </p>
 
         {tempStats && (
-          <div className="bg-slate-950 border border-slate-800/80 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs">
             <div>
-              <span className="text-slate-500">Cache Path: </span>
-              <span className="font-mono text-slate-300">{tempStats.tempDirectory}</span>
+              <span className="text-zinc-500">Cache Path: </span>
+              <span className="font-mono text-zinc-800 dark:text-zinc-200">{tempStats.tempDirectory}</span>
             </div>
             <div className="flex items-center gap-3 font-mono">
-              <span>Files: <strong className="text-slate-200">{tempStats.fileCount}</strong></span>
-              <span>Size: <strong className="text-slate-200">{tempStats.totalSizeFormatted}</strong></span>
+              <span>Files: <strong className="text-zinc-900 dark:text-zinc-100">{tempStats.fileCount}</strong></span>
+              <span>Size: <strong className="text-zinc-900 dark:text-zinc-100">{tempStats.totalSizeFormatted}</strong></span>
             </div>
           </div>
         )}
 
         <div className="flex items-center justify-between pt-1">
           {cleanMessage ? (
-            <span className="text-xs text-emerald-400 font-medium">{cleanMessage}</span>
+            <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">{cleanMessage}</span>
           ) : (
-            <span className="text-xs text-slate-500">Safely purges any abandoned stream segments.</span>
+            <span className="text-xs text-zinc-500">Safely purges any abandoned stream segments.</span>
           )}
 
           <button
             type="button"
             onClick={handleCleanTemp}
             disabled={isCleaning}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 transition-all"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-red-600 dark:text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 transition-all"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>{isCleaning ? 'Cleaning...' : 'Clear Temp Cache'}</span>
@@ -206,37 +206,37 @@ export default function Settings({ settings, onSettingsUpdated }) {
       </div>
 
       {/* Bundled Self-Contained Engine Status */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
+      <div className="bg-white dark:bg-[#121215] border border-[#E4DFD5] dark:border-[#222226] rounded-2xl p-5 shadow-sm dark:shadow-xl space-y-3 transition-colors">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-5 h-5 text-emerald-400" />
-          <h3 className="text-sm font-bold text-slate-200">
+          <ShieldCheck className="w-5 h-5 text-zinc-800 dark:text-zinc-200" />
+          <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
             Bundled Engine Diagnostics
           </h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-          <div className="bg-slate-950 border border-slate-800 p-3 rounded-xl">
-            <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Media Engine</span>
-            <div className="text-sm font-bold text-slate-200 mt-1">yt-dlp (Bundled)</div>
-            <div className="text-xs text-emerald-400 flex items-center gap-1 mt-0.5">
+          <div className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] p-3 rounded-xl">
+            <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Media Engine</span>
+            <div className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1">yt-dlp (Bundled)</div>
+            <div className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5 font-medium">
               <CheckCircle2 className="w-3 h-3" />
               <span>Integrated Binary</span>
             </div>
           </div>
 
-          <div className="bg-slate-950 border border-slate-800 p-3 rounded-xl">
-            <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Stream Merger</span>
-            <div className="text-sm font-bold text-slate-200 mt-1">FFmpeg 9.0.2</div>
-            <div className="text-xs text-emerald-400 flex items-center gap-1 mt-0.5">
+          <div className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] p-3 rounded-xl">
+            <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Stream Merger</span>
+            <div className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1">FFmpeg 9.0.2</div>
+            <div className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5 font-medium">
               <CheckCircle2 className="w-3 h-3" />
               <span>Integrated Binary</span>
             </div>
           </div>
 
-          <div className="bg-slate-950 border border-slate-800 p-3 rounded-xl">
-            <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Stream Analyzer</span>
-            <div className="text-sm font-bold text-slate-200 mt-1">FFprobe 9.0.2</div>
-            <div className="text-xs text-emerald-400 flex items-center gap-1 mt-0.5">
+          <div className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] p-3 rounded-xl">
+            <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Stream Analyzer</span>
+            <div className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1">FFprobe 9.0.2</div>
+            <div className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5 font-medium">
               <CheckCircle2 className="w-3 h-3" />
               <span>Integrated Binary</span>
             </div>
@@ -246,4 +246,3 @@ export default function Settings({ settings, onSettingsUpdated }) {
     </div>
   );
 }
-

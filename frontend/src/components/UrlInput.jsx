@@ -42,8 +42,8 @@ export default function UrlInput({ onSubmit, isLoading }) {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <form onSubmit={handleSubmit} className="relative">
-        <div className="relative flex items-center bg-slate-900 border-2 border-slate-700/80 hover:border-slate-600 focus-within:border-blue-500 rounded-2xl p-1.5 shadow-2xl transition-all">
-          <div className="pl-4 text-slate-500">
+        <div className="relative flex items-center bg-white dark:bg-[#121215] border-2 border-[#E4DFD5] dark:border-[#222226] hover:border-zinc-400 dark:hover:border-zinc-600 focus-within:border-zinc-900 dark:focus-within:border-zinc-100 rounded-2xl p-1.5 shadow-sm dark:shadow-xl transition-all">
+          <div className="pl-4 text-zinc-400 dark:text-zinc-500">
             <Link2 className="w-5 h-5" />
           </div>
 
@@ -56,7 +56,7 @@ export default function UrlInput({ onSubmit, isLoading }) {
             }}
             placeholder="Paste YouTube or supported video URL here..."
             disabled={isLoading}
-            className="w-full bg-transparent px-4 py-3 text-sm sm:text-base text-slate-100 placeholder-slate-500 focus:outline-none disabled:opacity-50"
+            className="w-full bg-transparent px-4 py-3 text-sm sm:text-base text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none disabled:opacity-50"
           />
 
           <div className="flex items-center gap-1.5 pr-1.5">
@@ -65,7 +65,7 @@ export default function UrlInput({ onSubmit, isLoading }) {
                 type="button"
                 onClick={handleClear}
                 disabled={isLoading}
-                className="p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+                className="p-2 rounded-xl text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                 title="Clear input"
               >
                 <X className="w-4 h-4" />
@@ -76,7 +76,7 @@ export default function UrlInput({ onSubmit, isLoading }) {
               type="button"
               onClick={handlePaste}
               disabled={isLoading}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-all border border-slate-700/60"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-white transition-all border border-zinc-200 dark:border-zinc-700/60"
               title="Paste from clipboard"
             >
               <Clipboard className="w-3.5 h-3.5" />
@@ -86,7 +86,7 @@ export default function UrlInput({ onSubmit, isLoading }) {
             <button
               type="submit"
               disabled={isLoading || !url.trim()}
-              className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-600/25 transition-all"
+              className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white bg-zinc-950 hover:bg-zinc-850 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition-all active:scale-[0.98]"
             >
               {isLoading ? (
                 <>
@@ -104,7 +104,7 @@ export default function UrlInput({ onSubmit, isLoading }) {
         </div>
 
         {error && (
-          <p className="mt-2 text-xs text-red-400 pl-4 flex items-center gap-1 animate-fadeIn">
+          <p className="mt-2 text-xs text-red-500 dark:text-red-400 pl-4 flex items-center gap-1 animate-fadeIn font-medium">
             <span>•</span> {error}
           </p>
         )}
@@ -112,4 +112,3 @@ export default function UrlInput({ onSubmit, isLoading }) {
     </div>
   );
 }
-

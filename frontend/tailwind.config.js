@@ -8,24 +8,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+        canvas: {
+          light: '#F6F4F0',
+          dark: '#09090B',
+          cardLight: '#FFFFFF',
+          cardDark: '#121215',
+          borderLight: '#E4DFD5',
+          borderDark: '#222226',
         },
-        surface: {
-          dark: '#0f172a',
-          card: '#1e293b',
-          border: '#334155',
-          hover: '#2d3748',
+        ink: {
+          950: '#09090B',
+          900: '#121215',
+          850: '#18181D',
+          800: '#222226',
+          700: '#34343A',
+          600: '#52525B',
+          500: '#71717A',
+          400: '#A1A1AA',
+          300: '#D4D4D8',
+          200: '#E4E4E7',
+          100: '#F4F4F6',
+          50: '#FAFAFA',
         }
       },
       fontFamily: {
@@ -35,4 +38,3 @@ export default {
   },
   plugins: [],
 }
-

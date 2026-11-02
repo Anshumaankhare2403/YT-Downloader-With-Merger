@@ -77,11 +77,11 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
 
   return (
     <div className="space-y-4">
-      {/* Filter Controls Bar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+      {/* Controls & Filter Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1.5 text-slate-400 font-semibold mr-1">
-            <Filter className="w-3.5 h-3.5 text-blue-400" />
+          <div className="flex items-center gap-1.5 text-zinc-500 font-semibold">
+            <Filter className="w-3.5 h-3.5" />
             <span>Filters:</span>
           </div>
 
@@ -89,25 +89,27 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
           <select
             value={resFilter}
             onChange={(e) => setResFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500"
+            className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] text-zinc-900 dark:text-zinc-100 rounded-xl px-2.5 py-1.5 focus:outline-none font-medium"
           >
             <option value="all">All Resolutions</option>
-            <option value="4k">4K Ultra HD (≥2160p)</option>
-            <option value="1080p">1080p Full HD</option>
-            <option value="720p">720p HD</option>
-            <option value="sd">Standard Def (≤480p)</option>
-            <option value="audio">Audio Only</option>
+            <option value="4k">4K (2160p+)</option>
+            <option value="1080p">1080p (Full HD)</option>
+            <option value="720p">720p (HD)</option>
+            <option value="sd">SD (480p and lower)</option>
+            <option value="audio">Audio Streams Only</option>
           </select>
 
           {/* Extension Filter */}
           <select
             value={extFilter}
             onChange={(e) => setExtFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 uppercase font-mono"
+            className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] text-zinc-900 dark:text-zinc-100 rounded-xl px-2.5 py-1.5 focus:outline-none font-medium"
           >
             <option value="all">All Extensions</option>
-            {extensions.map(ext => (
-              <option key={ext} value={ext}>{ext.toUpperCase()}</option>
+            {extensions.map((ext) => (
+              <option key={ext} value={ext}>
+                .{ext.toUpperCase()}
+              </option>
             ))}
           </select>
 
@@ -115,7 +117,7 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
           <select
             value={codecFilter}
             onChange={(e) => setCodecFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500"
+            className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] text-zinc-900 dark:text-zinc-100 rounded-xl px-2.5 py-1.5 focus:outline-none font-medium"
           >
             <option value="all">All Video Codecs</option>
             <option value="avc">H.264 / AVC</option>
@@ -127,7 +129,7 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
           <select
             value={audioFilter}
             onChange={(e) => setAudioFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500"
+            className="bg-[#F6F4F0] dark:bg-[#09090B] border border-[#E4DFD5] dark:border-[#222226] text-zinc-900 dark:text-zinc-100 rounded-xl px-2.5 py-1.5 focus:outline-none font-medium"
           >
             <option value="all">All Stream Types</option>
             <option value="muxed">Muxed (Video+Audio)</option>
@@ -136,19 +138,19 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
           </select>
         </div>
 
-        <div className="text-slate-400 font-mono">
+        <div className="text-zinc-500 font-mono">
           Showing <strong>{filteredFormats.length}</strong> of <strong>{formats.length}</strong> formats
         </div>
       </div>
 
       {/* Formats Table */}
-      <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/90 shadow-xl">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-slate-950/80 text-slate-400 uppercase font-semibold border-b border-slate-800 select-none">
+      <div className="overflow-x-auto rounded-2xl border border-[#E4DFD5] dark:border-[#222226] bg-white dark:bg-[#121215] shadow-sm">
+        <table className="w-full text-left text-xs text-zinc-700 dark:text-zinc-300">
+          <thead className="bg-[#F6F4F0] dark:bg-[#09090B] text-zinc-600 dark:text-zinc-400 uppercase font-bold border-b border-[#E4DFD5] dark:border-[#222226] select-none">
             <tr>
               <th
                 onClick={() => toggleSort('height')}
-                className="px-4 py-3 cursor-pointer hover:text-slate-200 transition-colors"
+                className="px-4 py-3 cursor-pointer hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
               >
                 <div className="flex items-center gap-1.5">
                   <span>Quality</span>
@@ -160,7 +162,7 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
               <th className="px-4 py-3">Audio Track</th>
               <th
                 onClick={() => toggleSort('fps')}
-                className="px-4 py-3 cursor-pointer hover:text-slate-200 transition-colors"
+                className="px-4 py-3 cursor-pointer hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
               >
                 <div className="flex items-center gap-1.5">
                   <span>FPS</span>
@@ -169,7 +171,7 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
               </th>
               <th
                 onClick={() => toggleSort('size')}
-                className="px-4 py-3 cursor-pointer hover:text-slate-200 transition-colors"
+                className="px-4 py-3 cursor-pointer hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
               >
                 <div className="flex items-center gap-1.5">
                   <span>File Size</span>
@@ -180,10 +182,10 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
               <th className="px-4 py-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 font-medium">
+          <tbody className="divide-y divide-[#E4DFD5]/60 dark:divide-[#222226] font-medium">
             {filteredFormats.length === 0 ? (
               <tr>
-                <td colSpan="8" className="px-4 py-8 text-center text-slate-500">
+                <td colSpan="8" className="px-4 py-8 text-center text-zinc-400">
                   No media formats match the active filters.
                 </td>
               </tr>
@@ -198,18 +200,18 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
                     onClick={() => onSelectFormat(f)}
                     className={`cursor-pointer transition-colors ${
                       isSelected
-                        ? 'bg-blue-600/15 text-white'
-                        : 'hover:bg-slate-800/40'
+                        ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-950 dark:text-white font-semibold'
+                        : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/40'
                     }`}
                   >
                     {/* Quality */}
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-100 text-sm">
+                        <span className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
                           {f.qualityLabel}
                         </span>
                         {f.format_id && (
-                          <span className="text-[10px] text-slate-500 font-mono">
+                          <span className="text-[10px] text-zinc-400 font-mono">
                             #{f.format_id}
                           </span>
                         )}
@@ -217,45 +219,45 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
                     </td>
 
                     {/* Container Extension */}
-                    <td className="px-4 py-3 uppercase font-mono text-slate-400">
+                    <td className="px-4 py-3 uppercase font-mono text-zinc-500 dark:text-zinc-400">
                       {f.ext}
                     </td>
 
                     {/* Video Codec */}
-                    <td className="px-4 py-3 font-mono text-slate-300">
-                      {f.hasVideo ? f.vcodec : <span className="text-slate-600">None</span>}
+                    <td className="px-4 py-3 font-mono text-zinc-700 dark:text-zinc-300">
+                      {f.hasVideo ? f.vcodec : <span className="text-zinc-400">None</span>}
                     </td>
 
                     {/* Audio Track */}
                     <td className="px-4 py-3">
                       {f.hasAudio ? (
-                        <span className="inline-flex items-center gap-1 text-emerald-400 font-mono text-[11px]">
+                        <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-semibold">
                           <Music className="w-3 h-3" />
                           <span>{f.acodec?.split('.')[0] || 'Available'}</span>
                         </span>
                       ) : requiresMerge ? (
-                        <span className="inline-flex items-center gap-1 text-amber-400 text-[11px]" title="FFmpeg will automatically merge with best audio stream">
+                        <span className="inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 text-[11px] font-semibold" title="FFmpeg will automatically merge with best audio stream">
                           <AlertTriangle className="w-3 h-3" />
                           <span>Auto-Merged</span>
                         </span>
                       ) : (
-                        <span className="text-slate-500 text-[11px]">None</span>
+                        <span className="text-zinc-400 text-[11px]">None</span>
                       )}
                     </td>
 
                     {/* FPS */}
-                    <td className="px-4 py-3 font-mono text-slate-400">
+                    <td className="px-4 py-3 font-mono text-zinc-500 dark:text-zinc-400">
                       {f.fps ? `${f.fps}` : '—'}
                     </td>
 
                     {/* File Size */}
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center gap-1.5 font-mono">
-                        <span className={f.filesize ? 'text-slate-200' : 'text-slate-400'}>
+                        <span className={f.filesize ? 'text-zinc-900 dark:text-zinc-100 font-bold' : 'text-zinc-500'}>
                           {f.sizeFormatted}
                         </span>
                         {f.isEstimate && (
-                          <span className="text-[10px] px-1 py-0.2 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" title="Estimated based on stream bitrate and duration">
+                          <span className="text-[10px] px-1 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-semibold" title="Estimated based on stream bitrate and duration">
                             Est.
                           </span>
                         )}
@@ -264,13 +266,7 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
 
                     {/* Stream Type */}
                     <td className="px-4 py-3">
-                      <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider ${
-                        f.type === 'muxed'
-                          ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                          : f.type === 'video_only'
-                          ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-                          : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                      }`}>
+                      <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
                         {f.type.replace('_', ' ')}
                       </span>
                     </td>
@@ -283,10 +279,10 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
                           e.stopPropagation();
                           onSelectFormat(f);
                         }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                           isSelected
-                            ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                            ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-sm'
+                            : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
                         }`}
                       >
                         {isSelected ? 'Selected' : 'Select'}
@@ -302,4 +298,3 @@ export default function FormatTable({ formats = [], selectedFormat, onSelectForm
     </div>
   );
 }
-

@@ -22,19 +22,19 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl transition-all">
+    <div className="bg-white dark:bg-[#121215] border border-[#E4DFD5] dark:border-[#222226] rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-xl transition-colors">
       <div className="flex items-start justify-between gap-4 mb-3">
         {/* Title and Phase */}
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+            <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
               isCompleted
-                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
                 : isFailed
-                ? 'bg-red-500/15 text-red-400 border border-red-500/30'
+                ? 'bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30'
                 : isCanceled
-                ? 'bg-slate-800 text-slate-400 border border-slate-700'
-                : 'bg-blue-500/15 text-blue-400 border border-blue-500/30 animate-pulse'
+                ? 'bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-700'
+                : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-700 animate-pulse font-extrabold'
             }`}>
               {isCompleted ? (
                 <>
@@ -59,12 +59,12 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
               )}
             </span>
 
-            <span className="text-xs text-slate-400 truncate">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 truncate font-medium">
               {task.phase || 'Processing...'}
             </span>
           </div>
 
-          <h3 className="text-sm sm:text-base font-bold text-slate-100 truncate">
+          <h3 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100 truncate">
             {task.title || 'Downloading Media...'}
           </h3>
         </div>
@@ -75,7 +75,7 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
             <button
               type="button"
               onClick={() => onCancel(task.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-red-600 dark:text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 transition-all"
               title="Cancel download"
             >
               <XCircle className="w-3.5 h-3.5" />
@@ -88,7 +88,7 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
               <button
                 type="button"
                 onClick={handleOpenFile}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white shadow-sm transition-all"
                 title="Open file"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -98,7 +98,7 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
               <button
                 type="button"
                 onClick={handleOpenFolder}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700"
                 title="Show in containing folder"
               >
                 <FolderOpen className="w-3.5 h-3.5" />
@@ -111,7 +111,7 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
             <button
               type="button"
               onClick={() => onRetry(task)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition-all"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Retry</span>
@@ -121,7 +121,7 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
       </div>
 
       {/* Progress Bar */}
-      <div className="relative w-full h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+      <div className="relative w-full h-3 bg-zinc-100 dark:bg-zinc-950 rounded-full overflow-hidden border border-[#E4DFD5] dark:border-[#222226]">
         <div
           className={`h-full transition-all duration-300 ${
             isCompleted
@@ -129,27 +129,27 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
               : isFailed
               ? 'bg-red-500'
               : isCanceled
-              ? 'bg-slate-700'
-              : 'bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600'
+              ? 'bg-zinc-400 dark:bg-zinc-700'
+              : 'bg-zinc-900 dark:bg-zinc-100'
           }`}
           style={{ width: `${Math.min(100, Math.max(0, task.progress || 0))}%` }}
         />
       </div>
 
       {/* Progress Stats Footer */}
-      <div className="mt-2.5 flex items-center justify-between text-xs text-slate-400 font-mono">
+      <div className="mt-2.5 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 font-mono">
         <div className="flex items-center gap-3">
-          <span>{task.progress || 0}%</span>
+          <span className="font-bold text-zinc-900 dark:text-zinc-100">{task.progress || 0}%</span>
           {isInProgress && task.speedFormatted && (
-            <span>• Speed: <strong className="text-slate-200">{task.speedFormatted}</strong></span>
+            <span>• Speed: <strong className="text-zinc-800 dark:text-zinc-200">{task.speedFormatted}</strong></span>
           )}
           {isInProgress && task.etaFormatted && task.etaFormatted !== '--' && (
-            <span>• ETA: <strong className="text-slate-200">{task.etaFormatted}</strong></span>
+            <span>• ETA: <strong className="text-zinc-800 dark:text-zinc-200">{task.etaFormatted}</strong></span>
           )}
         </div>
 
         {task.error && (
-          <span className="text-red-400 truncate max-w-[300px]">
+          <span className="text-red-500 dark:text-red-400 truncate max-w-[300px] font-sans">
             Error: {task.error}
           </span>
         )}
@@ -157,4 +157,3 @@ export default function DownloadProgress({ task, onCancel, onRetry }) {
     </div>
   );
 }
-

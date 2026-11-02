@@ -21,7 +21,18 @@ export default function App() {
   const [history, setHistory] = useState([]);
   const [settings, setSettings] = useState(null);
   const [isBackendReady, setIsBackendReady] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('yt_theme') || 'dark';
+  });
+
+  // Apply theme class to document root
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   // Load initial settings, downloads, and connect WebSocket
   useEffect(() => {
@@ -31,7 +42,9 @@ export default function App() {
       try {
         const loadedSettings = await getSettings();
         setSettings(loadedSettings);
-        if (loadedSettings.theme) setTheme(loadedSettings.theme);
+        if (loadedSettings.theme && !localStorage.getItem('yt_theme')) {
+          setTheme(loadedSettings.theme);
+        }
 
         const loadedHistory = await getDownloadHistory();
         setHistory(loadedHistory);
@@ -87,6 +100,7 @@ export default function App() {
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
+    localStorage.setItem('yt_theme', next);
     if (next === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -145,7 +159,7 @@ export default function App() {
   ).length;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 transition-colors font-sans antialiased">
+    <div className="min-h-screen flex flex-col bg-[#F6F4F0] text-zinc-900 dark:bg-[#09090B] dark:text-zinc-100 transition-colors duration-200 font-sans antialiased">
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
@@ -193,12 +207,11 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/60 py-3 text-center text-xs text-slate-500">
+      <footer className="border-t border-[#E4DFD5] dark:border-[#222226] bg-[#F6F4F0]/80 dark:bg-[#09090B]/80 py-3 text-center text-xs text-zinc-500 dark:text-zinc-500 transition-colors">
         <p>
-          YT Downloader • Self-Contained Desktop Application • Bundled with yt-dlp & FFmpeg
+          YT Downloader • Self-Contained Desktop Application • Powered by yt-dlp & FFmpeg
         </p>
       </footer>
     </div>
   );
 }
-
