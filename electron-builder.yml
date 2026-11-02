@@ -1,0 +1,42 @@
+appId: com.ytdownloader.desktop
+productName: YT Downloader
+copyright: Copyright © 2026
+
+directories:
+  output: release
+  buildResources: resources
+
+files:
+  - "electron/**/*"
+  - "backend/**/*"
+  - "frontend/dist/**/*"
+  - "package.json"
+
+extraResources:
+  - from: "resources/win/"
+    to: "win/"
+    filter:
+      - "yt-dlp.exe"
+      - "ffmpeg.exe"
+      - "ffprobe.exe"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: resources/icons/icon.ico
+  executableName: YT-Downloader
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: YT Downloader
+
+portable:
+  artifactName: "${productName}-Portable-${version}.${ext}"

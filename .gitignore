@@ -147,3 +147,18 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Build and release artifacts
+dist/
+frontend/dist/
+release/
+backend-runtime.json
+
+# Binaries downloaded via npm run download:binaries
+resources/win/*.exe
+!resources/win/.gitkeep
+
+# Temporary media download scratch directory
+resources/temp_download/*
+!resources/temp_download/.gitkeep
+

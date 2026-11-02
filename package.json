@@ -1,0 +1,40 @@
+{
+  "name": "yt-downloader",
+  "version": "1.0.0",
+  "description": "Self-contained high-performance desktop application for media inspection, quality selection, and downloading with automatic stream merging.",
+  "author": "YT Downloader Team",
+  "main": "electron/main.js",
+  "type": "module",
+  "scripts": {
+    "download-binaries": "node scripts/download-binaries.js",
+    "verify-binaries": "node scripts/verify-binaries.js",
+    "start:backend": "node backend/server.js",
+    "dev:frontend": "npm run --prefix frontend dev",
+    "build:frontend": "npm run --prefix frontend build",
+    "dev": "node scripts/dev.js",
+    "start": "electron .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "node scripts/build.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:portable": "electron-builder --win portable",
+    "dist:nsis": "electron-builder --win nsis",
+    "dist:all": "electron-builder --win nsis portable"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
+    "supertest": "^7.0.0",
+    "vitest": "^3.0.5",
+    "wait-on": "^8.0.2"
+  }
+}
+
